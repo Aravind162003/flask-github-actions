@@ -25,6 +25,10 @@ jobs:
       - name: Test Flask application
         run: .venv/bin/python -c "from app import app; print('Flask application works!')"
 
-      -  name: Start Flask application
-         run: |
-           .venv/bin/python app.py > flask.log 2>&1 &
+      - name: Start Flask application
+        run: |
+          # Clear tracking ID so the runner doesn't kill the background job
+          export RUNNER_TRACKING_ID="" 
+          
+          # Use flask run with host 0.0.0.0 to allow external access
+          nohup .venv/bin/flask --app app.py run --host=0.0.0.0 --port=5000 > flask.log 2>&1 &
