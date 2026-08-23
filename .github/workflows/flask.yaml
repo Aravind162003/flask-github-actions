@@ -24,3 +24,7 @@ jobs:
 
       - name: Test Flask application
         run: .venv/bin/python -c "from app import app; print('Flask application works!')"
+
+      -  name: Start Flask application
+         run: |
+          nohup .venv/bin/python app.py > flask.log 2>&1 &
