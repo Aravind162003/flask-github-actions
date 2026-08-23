@@ -27,4 +27,4 @@ jobs:
 
       -  name: Start Flask application
          run: |
-          nohup .venv/bin/python app.py > flask.log 2>&1 &
+           .venv/bin/python app.py > flask.log 2>&1 &
